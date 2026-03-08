@@ -1,0 +1,20 @@
+# Bỏ qua các file biên dịch của Java
+*.class
+
+# Bỏ qua thư mục build của các công cụ (nếu sau này bạn dùng Maven/Gradle)
+target/
+build/
+
+# Bỏ qua cấu hình của các IDE (Mỗi người trong nhóm có thể dùng IDE khác nhau, không được đẩy cấu hình cá nhân lên)
+.idea/
+*.iml
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# Bỏ qua file log và file hệ điều hành
+*.log
+.DS_Store
+Thumbs.db
