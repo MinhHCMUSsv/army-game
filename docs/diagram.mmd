@@ -1,0 +1,65 @@
+classDiagram
+    direction BT
+    
+    class Soldier {
+        <<interface>>
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+
+    class AbstractSoldier {
+        #type: String
+        #atk: int
+        #hp: int
+        #def: int
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    AbstractSoldier ..|> Soldier : Realization
+
+    class Infantry {
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    Infantry --|> AbstractSoldier : Generalization
+
+    class Cavalry {
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    Cavalry --|> AbstractSoldier : Generalization
+
+    class EquipmentDecorator {
+        <<abstract>>
+        #wrappee: Soldier
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    EquipmentDecorator ..|> Soldier : Realization
+    EquipmentDecorator o--> Soldier : Aggregation (wrappee)
+
+    class Sword {
+        +hit() int
+    }
+    Sword --|> EquipmentDecorator : Generalization
+
+    class Shield {
+        +wardOff(int strength) boolean
+    }
+    Shield --|> EquipmentDecorator : Generalization
+
+    class SoldierProxy {
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    SoldierProxy ..|> Soldier : Realization
+
+    class Army {
+        -soldiers: List<Solider>
+        +add(Soldier soldier) void
+        +remove(Soldier soldier) void
+        +hit() int
+        +wardOff(int strength) boolean
+    }
+    Army ..|> Soldier : Realization
+    Army o--> Soldier : Aggregation (soldiers)
