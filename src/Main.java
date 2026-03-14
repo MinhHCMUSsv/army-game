@@ -1,8 +1,6 @@
 import proxy.SoldierProxy;
 import soldier.Cavalry;
 import soldier.Infantry;
-import equipment.Sword;
-import equipment.Shield;
 import composite.Army;
 
 public class Main {
@@ -34,16 +32,20 @@ public class Main {
             }
         }
 
+        System.out.println("");
+
         // Test Army
         Army group1 = new Army("Vikings");
-        group1.add(infantry);
-        group1.add(cavalry);
+        group1.add(new SoldierProxy(new Infantry()));
+        group1.add(new SoldierProxy(new Cavalry()));
+        group1.addShield();
         group1.hit();
         group1.wardOff(100);
 
         Army group2 = new Army("Samurai");
-        group2.add(new Infantry());
-        group2.add(new Cavalry());
+        group2.add(new SoldierProxy(new Infantry()));
+        group2.add(new SoldierProxy(new Cavalry()));
+        group2.addSword();
         group2.hit();
         group2.wardOff(150);
 
