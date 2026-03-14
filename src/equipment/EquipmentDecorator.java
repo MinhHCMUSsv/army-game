@@ -2,7 +2,7 @@ package equipment;
 import soldier.Soldier;
 
 public abstract class EquipmentDecorator implements Soldier {
-    Soldier wrappee;
+    protected Soldier wrappee;
 
     public EquipmentDecorator(Soldier wrappee) {
         this.wrappee = wrappee;
