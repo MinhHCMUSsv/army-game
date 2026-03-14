@@ -31,4 +31,19 @@ public class AbstractSoldier implements Soldier {
             return this.hp > 0;
         }
     }
+
+    @Override
+    public void addShield() {
+        addEquipment("shield");
+    }
+
+    @Override
+    public void addSword() {
+        addEquipment("sword");
+    }
+
+    @Override
+    public void addEquipment(String equipmentType) {
+        System.out.println("INFO: " + type + " cannot equip " + equipmentType + " directly. Use SoldierProxy.");
+    }
 }

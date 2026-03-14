@@ -3,14 +3,24 @@ import soldier.Soldier;
 import config.Database;
 
 public class Shield extends EquipmentDecorator {
+    private int currentDefBonus;
+
     public Shield(Soldier wrappee) {
         super(wrappee);
+        this.currentDefBonus = Database.SHIELD_DEF;
         System.out.println("-> Equipped with a Shield (DEF +" + Database.SHIELD_DEF + ")");
     }
 
     @Override
     public boolean wardOff(int strength) {
-        return super.wardOff(strength - Database.SHIELD_DEF);
+        int bonusUsed = currentDefBonus;
+        boolean survived = super.wardOff(strength - bonusUsed);
+
+        int nextBonus = currentDefBonus - Database.SHIELD_DEF_DECAY_PER_USE;
+        currentDefBonus = Math.max(Database.SHIELD_DEF_MIN, nextBonus);
+
+        System.out.println("[Wear] Shield DEF bonus used: +" + bonusUsed + ", next: +" + currentDefBonus);
+        return survived;
     }
     
 }

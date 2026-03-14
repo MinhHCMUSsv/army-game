@@ -11,4 +11,10 @@ public class Database {
 
     public static final int SHIELD_DEF = 30;
     public static final int SWORD_ATK = 30;
+
+    public static final int SHIELD_DEF_DECAY_PER_USE = 5;
+    public static final int SHIELD_DEF_MIN = 5;
+
+    public static final int SWORD_ATK_DECAY_PER_USE = 5;
+    public static final int SWORD_ATK_MIN = 5;
 }
