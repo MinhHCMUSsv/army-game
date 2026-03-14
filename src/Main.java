@@ -1,29 +1,34 @@
-import soldier.Soldier;
+import proxy.SoldierProxy;
 import soldier.Cavalry;
 import soldier.Infantry;
-import equipment.Sword;
-import equipment.Shield;
 
 public class Main {
     public static void main(String[] args) {
-        Soldier infantry = new Infantry();
-        Soldier cavalry = new Cavalry();
+        SoldierProxy infantry = new SoldierProxy(new Infantry());
+        SoldierProxy cavalry = new SoldierProxy(new Cavalry());
 
-        // Test Soldiers
+        System.out.println("=== Round 0: no equipment ===");
         int strength = infantry.hit();
-        System.out.println(strength);
+        System.out.println("Attack power: " + strength);
         cavalry.wardOff(strength);
 
-        // Test Sword
-        infantry = new Sword(infantry);
-        strength = infantry.hit();
-        System.out.println(strength);
-        cavalry.wardOff(strength);
+        System.out.println("\n=== Equip equipment via Proxy ===");
+        infantry.addSword();
+        infantry.addSword();
+        cavalry.addShield();
+        cavalry.addShield();
 
-        // Test Shield
-        cavalry = new Shield(cavalry);
-        strength = infantry.hit();
-        System.out.println(strength);
-        cavalry.wardOff(strength);
+        System.out.println("\n=== Wear-and-tear simulation (5 rounds) ===");
+        for (int round = 1; round <= 5; round++) {
+            System.out.println("\nRound " + round + ":");
+            strength = infantry.hit();
+            System.out.println("Attack power: " + strength);
+            boolean cavalryAlive = cavalry.wardOff(strength);
+
+            if (!cavalryAlive) {
+                System.out.println("Cavalry is defeated. Battle ends at round " + round + ".");
+                break;
+            }
+        }
     }
 }

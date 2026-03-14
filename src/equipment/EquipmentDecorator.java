@@ -17,4 +17,19 @@ public abstract class EquipmentDecorator implements Soldier {
     public boolean wardOff(int strength) {
         return wrappee.wardOff(strength);
     }
+
+    @Override
+    public void addShield() {
+        wrappee.addShield();
+    }
+
+    @Override
+    public void addSword() {
+        wrappee.addSword();
+    }
+
+    @Override
+    public void addEquipment(String equipmentType) {
+        wrappee.addEquipment(equipmentType);
+    }
 }
