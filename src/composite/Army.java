@@ -53,4 +53,25 @@ public class Army implements Soldier {
 
         return !soldiers.isEmpty();
     }
+
+    @Override
+    public void addShield() {
+        for (Soldier soldier : soldiers) {
+            soldier.addShield();
+        }
+    }
+
+    @Override
+    public void addSword() {
+        for (Soldier soldier : soldiers) {
+            soldier.addSword();
+        }
+    }
+
+    @Override
+    public void addEquipment(String equipmentType) {
+        for (Soldier soldier : soldiers) {
+            soldier.addEquipment(equipmentType);
+        }
+    }
 }

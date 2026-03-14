@@ -1,12 +1,14 @@
 package soldier;
 
 public class AbstractSoldier implements Soldier {
+    protected String name;
     protected String type;
     protected int atk;  
     protected int hp;
     protected int def;
 
     public AbstractSoldier(String type, int atk, int hp, int def) {
+        this.name = type + "_" + System.currentTimeMillis();
         this.type = type;
         this.atk = atk;
         this.hp = hp;
