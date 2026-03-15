@@ -1,5 +1,6 @@
 package equipment;
 import soldier.Soldier;
+import visitor.IVisitor;
 
 public abstract class EquipmentDecorator implements Soldier {
     protected Soldier wrappee;
@@ -31,5 +32,10 @@ public abstract class EquipmentDecorator implements Soldier {
     @Override
     public void addEquipment(String equipmentType) {
         wrappee.addEquipment(equipmentType);
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        wrappee.accept(visitor);
     }
 }

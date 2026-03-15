@@ -1,4 +1,5 @@
 package soldier;
+import visitor.IVisitor;
 
 public interface Soldier {
     int hit();
@@ -6,4 +7,8 @@ public interface Soldier {
     void addShield();
     void addSword();
     void addEquipment(String equipmentType);
+    void accept(IVisitor visitor);
+    default int getMemberCount() {
+        return 1; 
+    }
 }

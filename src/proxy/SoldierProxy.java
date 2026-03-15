@@ -3,6 +3,7 @@ package proxy;
 import equipment.Shield;
 import equipment.Sword;
 import soldier.Soldier;
+import visitor.IVisitor;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -96,6 +97,12 @@ public class SoldierProxy implements Soldier
             return "";
         }
         return equipmentType.trim().toLowerCase(Locale.ROOT);
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+        realSoldier.accept(visitor); // Đi xuyên qua Proxy
     }
 
 }

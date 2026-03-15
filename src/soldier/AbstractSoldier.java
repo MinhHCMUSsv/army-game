@@ -1,6 +1,6 @@
 package soldier;
 
-public class AbstractSoldier implements Soldier {
+public abstract class AbstractSoldier implements Soldier {
     protected String name;
     protected String type;
     protected int atk;  
@@ -17,7 +17,7 @@ public class AbstractSoldier implements Soldier {
 
     @Override
     public int hit() {
-        System.out.print(type + " hit the enemy ");
+        System.out.println(type + " hit the enemy ");
         return atk;
     }
 
