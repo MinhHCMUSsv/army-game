@@ -98,9 +98,10 @@ public class Army implements Soldier {
 
     @Override
     public void accept(IVisitor visitor) {
-        visitor.visit(this); // Cho phép Visitor xử lý Army
+        visitor.visit(this); 
         for (Soldier soldier : soldiers) {
-            soldier.accept(visitor); // Duyệt qua từng lính con
+            soldier.accept(visitor); 
         }
+        visitor.visitEnd(this);
     }
 }

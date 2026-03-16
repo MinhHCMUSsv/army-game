@@ -15,7 +15,6 @@ public class Main {
 
         System.out.println("=== Round 0: no equipment ===");
         int strength = infantry.hit();
-        System.out.println("Attack power: " + strength);
         cavalry.wardOff(strength);
 
         System.out.println("\n=== Equip equipment via Proxy ===");
@@ -28,7 +27,6 @@ public class Main {
         for (int round = 1; round <= 5; round++) {
             System.out.println("\nRound " + round + ":");
             strength = infantry.hit();
-            System.out.println("Attack power: " + strength);
             boolean cavalryAlive = cavalry.wardOff(strength);
 
             if (!cavalryAlive) {
@@ -79,5 +77,6 @@ public class Main {
         System.out.println("\n--- Counting Special Forces Members ---");
         CountVisitor countVisitor = new CountVisitor();
         army.accept(countVisitor);
+        countVisitor.printReport();
     }
 }

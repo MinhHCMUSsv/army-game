@@ -14,4 +14,5 @@ public interface IVisitor {
     void visit(Shield shield);
     void visit(Sword sword);
     void visit(SoldierProxy proxy);
+    void visitEnd(Army army);
 }

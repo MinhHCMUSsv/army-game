@@ -29,6 +29,7 @@ public class CountVisitor implements IVisitor {
     @Override public void visit(Shield shield) { /* Do not count shield */ }
     @Override public void visit(Sword sword) { /* Do not count sword */ }
     @Override public void visit(SoldierProxy proxy) { /* Do not count proxy */ }
+    @Override public void visitEnd(Army army) { /* Do not need */ }
     
     public void printReport() {
         System.out.println("--- UNIT COUNT REPORT ---");

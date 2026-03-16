@@ -17,7 +17,7 @@ public abstract class AbstractSoldier implements Soldier {
 
     @Override
     public int hit() {
-        System.out.println(type + " hit the enemy ");
+        System.out.println(String.format("[ATTACK] %s (%s) hits the enemy for %d damage.", name, type, atk));
         return atk;
     }
 
@@ -25,11 +25,11 @@ public abstract class AbstractSoldier implements Soldier {
     public boolean wardOff(int strength) {
         int damage = strength - def;
         if (damage <= 0) {
-            System.out.println(type + " ward off the attack");
+            System.out.println(String.format("[DEFEND] %s (%s) completely warded off the attack! (Strength: %d)", name, type, strength));
             return true;
         } else {
             hp -= damage;
-            System.out.println(type + " receive " + damage + " damage, hp left: " + hp);
+            System.out.println(String.format("[DAMAGE] %s (%s) received %d damage (Strength: %d). HP left: %d", name, type, damage, strength, hp));
             return this.hp > 0;
         }
     }
