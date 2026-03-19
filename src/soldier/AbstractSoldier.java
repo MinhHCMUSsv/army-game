@@ -1,11 +1,15 @@
 package soldier;
 
+import observer.DeathCountObserver;
+import observer.DeathNotifierObserver;
+
 public abstract class AbstractSoldier implements Soldier {
     protected String name;
     protected String type;
     protected int atk;  
     protected int hp;
     protected int def;
+    private boolean deathNotified;
 
     public AbstractSoldier(String type, int atk, int hp, int def) {
         this.name = type + "_" + System.currentTimeMillis();
@@ -13,6 +17,7 @@ public abstract class AbstractSoldier implements Soldier {
         this.atk = atk;
         this.hp = hp;
         this.def = def;
+        this.deathNotified = false;
     }
 
     @Override
@@ -30,6 +35,13 @@ public abstract class AbstractSoldier implements Soldier {
         } else {
             hp -= damage;
             System.out.println(String.format("[DAMAGE] %s (%s) received %d damage (Strength: %d). HP left: %d", name, type, damage, strength, hp));
+
+            if (hp <= 0 && !deathNotified) {
+                deathNotified = true;
+                DeathCountObserver.getInstance().onSoldierDeath(name);
+                DeathNotifierObserver.getInstance().onSoldierDeath(name, type);
+            }
+
             return this.hp > 0;
         }
     }
