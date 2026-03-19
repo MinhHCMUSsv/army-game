@@ -20,12 +20,19 @@ public class SoldierProxy implements Soldier
 
     public SoldierProxy(Soldier soldier)
     {
+        this(soldier, true);
+    }
+
+    public SoldierProxy(Soldier soldier, boolean registerDefaultEquipment)
+    {
         this.realSoldier = soldier;
         this.equippedTypes = new HashSet<>();
         this.equipmentFactories = new HashMap<>();
 
-        registerEquipment("sword", Sword::new);
-        registerEquipment("shield", Shield::new);
+        if (registerDefaultEquipment) {
+            registerEquipment("sword", Sword::new);
+            registerEquipment("shield", Shield::new);
+        }
     }
 
     @Override

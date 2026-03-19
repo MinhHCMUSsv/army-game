@@ -1,0 +1,100 @@
+classDiagram
+    direction TB
+
+    class Soldier {
+        <<interface>>
+        +hit() int
+        +wardOff(int strength) boolean
+        +addEquipment(String equipmentType) void
+        +accept(IVisitor visitor) void
+    }
+
+    class AbstractSoldier {
+        <<abstract>>
+        #name: String
+        #type: String
+        #atk: int
+        #hp: int
+        #def: int
+    }
+    class Infantry
+    class Cavalry
+
+    AbstractSoldier ..|> Soldier
+    Infantry --|> AbstractSoldier
+    Cavalry --|> AbstractSoldier
+
+    class EquipmentDecorator {
+        <<abstract>>
+        #wrappee: Soldier
+    }
+    class Sword
+    class Shield
+    class CustomEquipment
+
+    EquipmentDecorator ..|> Soldier
+    EquipmentDecorator *-- Soldier : wrappee
+    Sword --|> EquipmentDecorator
+    Shield --|> EquipmentDecorator
+    CustomEquipment --|> EquipmentDecorator
+
+    class SoldierProxy {
+        -realSoldier: Soldier
+        +registerEquipment(String, Function) void
+    }
+    SoldierProxy ..|> Soldier
+    SoldierProxy *-- Soldier : realSoldier
+
+    class Army {
+        -soldiers: List~Soldier~
+        +add(Soldier) void
+        +remove(Soldier) void
+    }
+    Army ..|> Soldier
+    Army o-- Soldier : contains
+
+    class IVisitor {
+        <<interface>>
+        +visit(Army)
+        +visit(Infantry)
+        +visit(Cavalry)
+        +visit(Shield)
+        +visit(Sword)
+        +visit(SoldierProxy)
+    }
+    class DisplayVisitor
+    class CountVisitor
+
+    DisplayVisitor ..|> IVisitor
+    CountVisitor ..|> IVisitor
+    Soldier ..> IVisitor : accept
+
+    class DeathCountObserver {
+        <<singleton>>
+        +getInstance() DeathCountObserver
+    }
+    class DeathNotifierObserver {
+        <<singleton>>
+        +getInstance() DeathNotifierObserver
+    }
+
+    AbstractSoldier ..> DeathCountObserver : notify death
+    AbstractSoldier ..> DeathNotifierObserver : notify death
+
+    class SoldierGenerationFactory {
+        <<interface>>
+        +createInfantry() Soldier
+        +createCavalry() Soldier
+    }
+    class AbstractGenerationFactory {
+        <<abstract>>
+    }
+    class MedievalFactory
+    class WorldWarFactory
+    class ScienceFictionFactory
+
+    AbstractGenerationFactory ..|> SoldierGenerationFactory
+    MedievalFactory --|> AbstractGenerationFactory
+    WorldWarFactory --|> AbstractGenerationFactory
+    ScienceFictionFactory --|> AbstractGenerationFactory
+    AbstractGenerationFactory ..> SoldierProxy : register generation equipment
