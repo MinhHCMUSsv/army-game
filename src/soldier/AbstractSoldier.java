@@ -10,14 +10,19 @@ public abstract class AbstractSoldier implements Soldier {
     protected int hp;
     protected int def;
     private boolean deathNotified;
-
+    private static int soldierID = 0;
     public AbstractSoldier(String type, int atk, int hp, int def) {
-        this.name = type + "_" + System.currentTimeMillis();
+        soldierID++;
+        this.name = type + "_" + soldierID;
         this.type = type;
         this.atk = atk;
         this.hp = hp;
         this.def = def;
         this.deathNotified = false;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override

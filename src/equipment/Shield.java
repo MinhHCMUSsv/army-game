@@ -1,6 +1,5 @@
 package equipment;
 import soldier.Soldier;
-import visitor.IVisitor;
 import config.Database;
 
 public class Shield extends EquipmentDecorator {
@@ -26,8 +25,7 @@ public class Shield extends EquipmentDecorator {
     }
     
     @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-        super.accept(visitor);
+    public String getEquipmentName() {
+        return "Shield";
     }
 }

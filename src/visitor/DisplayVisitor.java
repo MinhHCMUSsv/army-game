@@ -1,7 +1,6 @@
 package visitor;
 import composite.Army;
-import equipment.Shield;
-import equipment.Sword;
+import equipment.EquipmentDecorator;
 import proxy.SoldierProxy;
 import soldier.Cavalry;
 import soldier.Infantry;
@@ -28,22 +27,19 @@ public class DisplayVisitor implements IVisitor {
     }
 
     @Override
-    public void visit(Shield shield) {
-        System.out.println(indent.toString() + "   + Equipment: Shield");
-    }
-
-    @Override
-    public void visit(Sword sword) {
-        System.out.println(indent.toString() + "   + Equipment: Sword");
-    }
-
-    @Override
     public void visit(Infantry infantry) {
+        System.out.println(indent.toString() + "   + Name: " + infantry.getName());
         System.out.println(indent.toString() + "   + Base: Infantry");
     }
 
     @Override
     public void visit(Cavalry cavalry) {
+        System.out.println(indent.toString() + "   + Name: " + cavalry.getName());
         System.out.println(indent.toString() + "   + Base: Cavalry");
+    }
+
+    @Override
+    public void visit(EquipmentDecorator equipment) {
+        System.out.println(indent.toString() + "   + Equipment: " + equipment.getEquipmentName());
     }
 }
