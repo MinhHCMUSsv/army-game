@@ -1,9 +1,5 @@
 package visitor;
 
-import composite.Army;
-import equipment.Shield;
-import equipment.Sword;
-import proxy.SoldierProxy;
 import soldier.Cavalry;
 import soldier.Infantry;
 
@@ -13,8 +9,6 @@ public class CountVisitor implements IVisitor {
 
     public int getInfantryCount() { return infantryCount; }
     public int getCavalryCount() { return cavalryCount; }
-
-    @Override public void visit(Army army) { /* Do not count Army */ }
     
     @Override 
     public void visit(Infantry infantry) { 
@@ -25,12 +19,7 @@ public class CountVisitor implements IVisitor {
     public void visit(Cavalry cavalry) { 
         cavalryCount++; 
     }
-    
-    @Override public void visit(Shield shield) { /* Do not count shield */ }
-    @Override public void visit(Sword sword) { /* Do not count sword */ }
-    @Override public void visit(SoldierProxy proxy) { /* Do not count proxy */ }
-    @Override public void visitEnd(Army army) { /* Do not need */ }
-    
+
     public void printReport() {
         System.out.println("--- UNIT COUNT REPORT ---");
         System.out.println("Infantry: " + infantryCount);

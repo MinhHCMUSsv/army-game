@@ -33,4 +33,9 @@ public class CustomEquipment extends EquipmentDecorator {
         }
         return super.wardOff(effectiveStrength);
     }
+
+    @Override
+    public String getEquipmentName() {
+        return this.equipmentName;
+    }
 }

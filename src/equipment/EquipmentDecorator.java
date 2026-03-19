@@ -36,6 +36,9 @@ public abstract class EquipmentDecorator implements Soldier {
 
     @Override
     public void accept(IVisitor visitor) {
+        visitor.visit(this);
         wrappee.accept(visitor);
     }
+
+    public abstract String getEquipmentName();
 }
